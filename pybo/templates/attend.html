@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<header>
+    <meta http-equiv="refresh" content="3">
+</header>
+<div class="container my-3">
+    <a href="{{ url_for('attend.reset')}}" class="btn">RESET</a>
+  
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>이름</th>
+            <th>출결</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if user_list %}
+        {% for user in user_list %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.attendance }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+            <tr>
+                <td>USER가 없습니다</td>
+            </tr>
+        {% endif %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

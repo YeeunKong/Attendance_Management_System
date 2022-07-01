@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark, text-center">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 질문 목록 -->
+        {% if post_list %}
+            {% for post in post_list %}
+            <tr class="text-center">
+                <td>{{ post.id }}</td>
+                <td><a href="{{ url_for('post.view', id=post.id)}}">{{ post.title }}</a></td>
+                <td>{{ post.writer }}</td>
+                <td>{{ post.create_date|datetime}}</td>
+            </tr>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <tr>
+                <td>게시글이 없습니다.</td>
+            </tr>
+        {% endif %}
+            <a href="{{ url_for('post.write') }}" class="btn btn-primary">글쓰기</a>
+
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}
